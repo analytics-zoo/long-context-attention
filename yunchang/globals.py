@@ -96,18 +96,19 @@ try:
 except ImportError:
     HAS_FLASH_ATTN_HOPPER = False
 
-try:
-    from flashinfer.prefill import single_prefill_with_kv_cache
-    HAS_FLASHINFER = True
-    def get_cuda_arch():
-        major, minor = torch.cuda.get_device_capability()
-        return f"{major}.{minor}"
+# try:
+#     from flashinfer.prefill import single_prefill_with_kv_cache
+#     HAS_FLASHINFER = True
+#     def get_cuda_arch():
+#         major, minor = torch.cuda.get_device_capability()
+#         return f"{major}.{minor}"
 
-    cuda_arch = get_cuda_arch()
-    os.environ['TORCH_CUDA_ARCH_LIST'] = cuda_arch
-    print(f"Set TORCH_CUDA_ARCH_LIST to {cuda_arch}")
-except ImportError:
-    HAS_FLASHINFER = False
+#     cuda_arch = get_cuda_arch()
+#     os.environ['TORCH_CUDA_ARCH_LIST'] = cuda_arch
+#     print(f"Set TORCH_CUDA_ARCH_LIST to {cuda_arch}")
+# except ImportError:
+#     HAS_FLASHINFER = False
+HAS_FLASHINFER = False
 
 try:
     import sageattention
@@ -120,4 +121,3 @@ try:
     HAS_SPARSE_SAGE_ATTENTION = True
 except ImportError:
     HAS_SPARSE_SAGE_ATTENTION = False
-
